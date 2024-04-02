@@ -1,0 +1,3 @@
+npx json-server .\public\json-server\db.json --port 4321 --watch
+
+

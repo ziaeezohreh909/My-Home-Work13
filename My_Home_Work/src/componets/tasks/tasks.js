@@ -1,3 +1,31 @@
+import { TaskItem } from "./task-item";
+import { getAllTasks } from "../../api/api";
+
+let taskList = await getAllTasks();
+
+// let taskList = [
+//   {
+//     id: "1",
+//     title: "task1",
+//     priority: "High",
+//     status: "Done",
+//     deadline: "2023-12-03",
+//   },
+//   {
+//     id: "2",
+//     title: "task2",
+//     priority: "Low",
+//     status: "Doing",
+//     deadline: "2023-11-03",
+//   },
+//   {
+//     id: "3",
+//     title: "task3",
+//     priority: "Low",
+//     status: "To Do",
+//     deadline: "2023-11-09",
+//   },
+// ];
 export const Tasks = () => {
   const div = document.createElement("div");
   div.classList.add("table", "w-full");
@@ -13,7 +41,6 @@ export const Tasks = () => {
 
   const thead = document.createElement("thead");
   const trHead = document.createElement("tr");
-  thead.append(trHead);
 
   const taskNameCol = document.createElement("th");
   taskNameCol.classList.add("border", "border-slate-300", "h-16");
@@ -31,8 +58,14 @@ export const Tasks = () => {
   actionsCol.classList.add("border", "border-slate-300", "h-16");
   actionsCol.innerText = "Actions";
   trHead.append(taskNameCol, priorityCol, statusCol, deadlineCol, actionsCol);
-
+  thead.append(trHead);
   table.append(thead);
+  for (const task of taskList) {
+    table.append(
+      TaskItem(task.id, task.title, task.priority, task.status, task.deadline)
+    );
+  }
+
   div.append(table);
   return div;
 };

@@ -1,3 +1,5 @@
+import { Modal } from "../modals/modal";
+
 export const Header = () => {
   const header = document.createElement("header");
   header.classList.add(
@@ -52,6 +54,7 @@ export const Header = () => {
   addToTask.classList.add("bg-violet-700", "items-center");
   const imgAddToTask = document.createElement("img");
   imgAddToTask.src = "./image/Add.svg";
+  addToTask.addEventListener("click", () => Modal());
   addToTask.append(imgAddToTask);
 
   divRight.append(divSearch, divFilter, addToTask);
